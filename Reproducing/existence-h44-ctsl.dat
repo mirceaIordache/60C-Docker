@@ -1,0 +1,9 @@
+hosts processes workersPerProc totalWorkers runtime exists
+1 1 1 1 16005 FALSE
+1 1 2 2 13526 FALSE
+1 1 4 4 13234 FALSE
+2 2 4 8 3905 FALSE
+4 8 4 32 885 FALSE
+8 16 4 64 483 FALSE
+16 32 4 128 348 FALSE
+17 50 4 200 265 FALSE

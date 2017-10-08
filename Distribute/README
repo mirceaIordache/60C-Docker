@@ -1,0 +1,73 @@
+Data from "Replicable Parallel Branch and Bound Search" submitted to the
+Journal of Parallel and Distributed Computing.
+
+Authors: Blair Archibald, Patrick Maier, Ciaran McCreesh, Robert Stewart
+and Phil Trinder
+
+Results are stored in space-separated value (ssv) format.
+
+The plots from the paper may be reproduced using the analysis scripts in
+the scripts directory. A Makefile is provided to automate the process
+and show the required commands. The scripts depend on R with the ggplot2
+dplyr, grid and cowplot packages available.
+
+Setup
+=====
+
+All experiments are run on a the University of Glasgow GPG cluster with
+the following spec:
+
+1.  20 Nodes (Max 17 used)
+2.  16 Intel cores/node (2 * Intel Xeon E5-2640 2GHz)
+3.  64Gb RAM per node, i.e. 4Gb RAM/core.
+4.  Local Disk: 300Gb/node
+5.  10Gb Ethernet Interconnect
+6.  Ubuntu 14.04, Linux 3.19
+
+Source code for the application is available at:
+
+http://dx.doi.org/10.5281/zenodo.254088
+
+File Information
+================
+
+maxclique.dat, knapsack.dat, tsp.dat
+------------------------------------
+
+Main data files for testing the properties in Section 7.
+
+  Field        Type    Desc
+  ------------ ------- --------------------------------------------------------------------------------------
+  variant      str     Ordered or Unordered - Which skeleton are we using
+  benchmark    str     instance name
+  hosts        int     Number of distributed hosts we run on
+  processes    int     Number of OS Processes we spawn. Round robin distributed over hosts
+  schedulers   int     Number of *schedulers* assigned to HdpH. i.e Worker threads
+  cores        int     Number of cores assigned to the GHC runtime
+  workers      int     Total number of workers used (schedulers * processes)
+  runtime      float   Time in seconds to perform the search (no setup time) as reported by the application
+
+maxclique-sequential-haskell.dat
+--------------------------------
+
+Haskell Data for comparison with state of the art C++ maximum clique
+implementation (Table 6).
+
+Uses the Ordered skeleton with a single worker and no spawning to
+achieve an ordering that matches sequential while also using the generic
+skeleton routines.
+
+  Field       Type    Desc
+  ----------- ------- -----------------
+  benchmark   str     instance name
+  runtime     float   Time in seconds
+
+maxclique-sequential-cpp.dat
+----------------------------
+
+C++ Data for maximum clique sequential comparison (Table 6).
+
+  Field       Type    Desc
+  ----------- ------- -----------------
+  benchmark   str     instance name
+  runtime     float   Time in seconds
